@@ -9,9 +9,6 @@ namespace TYSocketServer
     {
         public Socket WorkSocket;
 
-        //public const int BufferSize = 1024;
-        //public const int BufferSize = 20480;
-
         public byte[] Buffer;
 
 

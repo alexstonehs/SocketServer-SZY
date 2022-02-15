@@ -124,7 +124,6 @@ namespace TYSocketServer
 
         private void ClientManageOnOffline(string mn)
         {
-            //Console.WriteLine($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}]站点{mn} 上线");
             ServerMessageEvent?.Invoke(new ConnClient
             {
                 ClientId = mn, EventType = ServerEvent.Offline, Message = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}]站点{mn} 下线"
@@ -133,7 +132,6 @@ namespace TYSocketServer
 
         private void ClientManageOnOnline(string mn)
         {
-            //Console.WriteLine($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}]站点{mn} 下线");
             ServerMessageEvent?.Invoke(new ConnClient
             {
                 ClientId = mn, EventType = ServerEvent.Online, Message = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}]站点{mn} 上线"
@@ -144,7 +142,6 @@ namespace TYSocketServer
         {
             ServerMessageEvent?.Invoke(new ConnClient
             {
-                //ClientId = mn,
                 EventType = ServerEvent.Error,
                 Message = exMessage
             });
@@ -155,7 +152,6 @@ namespace TYSocketServer
             Console.WriteLine($"客户端:{remoteEndpoint} {operationResultStr}");
             ServerMessageEvent?.Invoke(new ConnClient
             {
-                //ClientId = mn,
                 ClientId = remoteEndpoint,
                 EventType = ServerEvent.Other,
                 Message = $"客户端:{remoteEndpoint} {operationResultStr}"
@@ -308,11 +304,8 @@ namespace TYSocketServer
                         Message = "客户端已连接"
                     });
                     _clientManage.UpdateDeviceSockets(cid, handler);
-                    //StateObject state = new StateObject { WorkSocket = handler };
                     StateObject state = new StateObject( handler, _clientBufferSize);
                     handler.BeginReceive(state.Buffer, 0, state.Buffer.Length, 0, ReadCallback, state);
-                    //IList<ArraySegment<byte> > bli = new List<ArraySegment<byte>>();
-                    //handler.BeginReceive(state.bli, SocketFlags.None, out var errorCode, ReadCallback, state);
                 }
             }
             catch (ObjectDisposedException)
@@ -349,7 +342,6 @@ namespace TYSocketServer
                             $"{((IPEndPoint)handler.RemoteEndPoint).Address}:{((IPEndPoint)handler.RemoteEndPoint).Port}";
                         string msg = string.Empty;
                         _clientManage?.RemoveDeviceConn(cid, out msg);
-                        //Console.WriteLine($"客户端[{cid}]移除成功");
                         Console.WriteLine(msg);
                         handler.Dispose();
                     }
@@ -364,15 +356,11 @@ namespace TYSocketServer
                 int bytesRead = handler.EndReceive(ar);
                 if (bytesRead > 0)
                 {
-                    //string str = Encoding.ASCII.GetString(state.Buffer, 0, bytesRead);
                     var sInfo = handler.RemoteEndPoint.ToString();
                     _clientManage.UpdateDeviceSockets(sInfo, handler);
                     var data = state.Buffer.ToArray();
                     _triggerQueue?.Enqueue(new TriggerData{ClientId = sInfo, Data = data});
-                    //ServerDataReceivedEvent?.Invoke(sInfo, data);
                     state = new StateObject(handler, _clientBufferSize);
-                    //state.Buffer = new byte[_clientBufferSize];
-                    //Console.WriteLine($"收到来自连接点{sInfo} 数据：{Encoding.ASCII.GetString(data)}");
 
                     try
                     {
@@ -403,7 +391,6 @@ namespace TYSocketServer
                             $"{((IPEndPoint)handler.RemoteEndPoint).Address}:{((IPEndPoint)handler.RemoteEndPoint).Port}";
                         string msg = string.Empty;
                         _clientManage?.RemoveDeviceConn(cid, out msg);
-                        //Console.WriteLine($"客户端[{cid}]移除成功");
                         Console.WriteLine(msg);
                     }
                     catch (Exception e)

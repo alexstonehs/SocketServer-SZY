@@ -39,8 +39,6 @@ namespace TYSocketServer
         /// </summary>
         public event DeviceOffline Offline;
 
-        //private readonly Timer _cleanConnTimer;
-
         private bool _running = false;
 
         /// <summary>
@@ -52,9 +50,6 @@ namespace TYSocketServer
             _idleMin = idleCleanMinutes < 1 ? 1 : idleCleanMinutes;
             _connSockets = new ConcurrentDictionary<string, ClientConnection>();
             _running = true;
-            //_cleanConnTimer = new Timer(_idleMin * 60 * 1000) { AutoReset = true };//2分钟
-            //_cleanConnTimer.Elapsed += CleanConnTimerOnElapsed;
-            //_cleanConnTimer.Start();
             Thread t = new Thread(CleanConnAction){IsBackground = true};
             t.Start();
             
@@ -82,7 +77,6 @@ namespace TYSocketServer
                     {
                         ErrorMsg($"更新移除Socket连接失败:{e.Message}\r\n");
                     }
-                    //ConnSocketUpdated?.Invoke(currentConn.SocketRemoteEndPoint);
                     bool updateSuccess = _connSockets.TryUpdate(mn,
                         new ClientConnection(DateTime.Now) { ClientSocket = connSocket }, currentConn);
 
@@ -95,52 +89,14 @@ namespace TYSocketServer
                         new ClientConnection(DateTime.Now) { ClientSocket = _connSockets[mn].ClientSocket },
                         _connSockets[mn]);
                     reStr = $"站点[{mn}]通讯时间更新{(updateTimeSuccess ? "成功" : "失败")}";
-                    //ConnDeviceSockets[mn].AccessTime = DateTime.Now;
                 }
             }
             else
             {
-                //ConnDeviceSockets.Add(mn, new ZzSocketConn(DateTime.Now){Zzsocket = connSocket});
                 bool addSuccess = _connSockets.TryAdd(mn, new ClientConnection(DateTime.Now) { ClientSocket = connSocket });
                 reStr = $"站点[{mn}]通讯地址添加{(addSuccess ? "成功" : "失败")}";
                 Online?.Invoke(mn);
             }
-            //if (ConnSockets.ContainsKey(mn))
-            //{
-            //    if (!ConnSockets[mn].ClientSocket.Connected ||
-            //        ConnSockets[mn].ClientSocket.RemoteEndPoint != connSocket.RemoteEndPoint)
-            //    {
-            //        try
-            //        {
-            //            ConnSockets[mn].ClientSocket.Shutdown(SocketShutdown.Both);
-            //            ConnSockets[mn].ClientSocket.Close();
-            //        }
-            //        catch (Exception e)
-            //        {
-            //            ErrorMsg($"更新移除Socket连接失败:{e.Message}\r\n");
-            //        }
-            //        bool updateSuccess = ConnSockets.TryUpdate(mn,
-            //            new ClientConnection(DateTime.Now) { ClientSocket = connSocket }, ConnSockets[mn]);
-
-            //        reStr = $"站点[{mn}]通讯地址更新{(updateSuccess ? "成功" : "失败")}";
-            //    }
-            //    else
-            //    {
-            //        bool updateTimeSuccess = ConnSockets.TryUpdate(mn,
-            //            new ClientConnection(DateTime.Now) { ClientSocket = ConnSockets[mn].ClientSocket },
-            //            ConnSockets[mn]);
-            //        reStr = $"站点[{mn}]通讯时间更新{(updateTimeSuccess ? "成功" : "失败")}";
-            //        //ConnSockets[mn].AccessTime = DateTime.Now;
-            //    }
-
-            //}
-            //else
-            //{
-            //    //ConnSockets.Add(mn, new ClientSocketConn(DateTime.Now){ClientSocket = connSocket});
-            //    bool addSuccess = ConnSockets.TryAdd(mn, new ClientConnection(DateTime.Now) { ClientSocket = connSocket });
-            //    reStr = $"站点[{mn}]通讯地址添加{(addSuccess ? "成功" : "失败")}";
-            //    Online?.Invoke(mn);
-            //}
             return reStr;
         }
         /// <summary>
@@ -176,11 +132,6 @@ namespace TYSocketServer
                             GetConnRemovedStrInfo(mn, remoteEndPoint, isRemoved);
                         }
                     }
-                    //else
-                    //{
-                    //    //mn = socketKeys[i];
-                    //    Online?.Invoke(key);//通讯未超时，重新调用设备上线接口 用于刷新平台在线状态
-                    //}
                 }
             }
         }
@@ -275,23 +226,7 @@ namespace TYSocketServer
             return false;
         }
 
-        //private void CleanConnTimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
-        //{
-        //    _cleanConnTimer.Stop();
-        //    try
-        //    {
-        //        CleanDeviceSockets();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e);
-        //    }
-        //    finally
-        //    {
-        //        if(_running)
-        //            _cleanConnTimer.Start();
-        //    }
-        //}
+    
         void CleanConnAction()
         {
             while (_running)
@@ -306,19 +241,7 @@ namespace TYSocketServer
                 }
                 Thread.Sleep(TimeSpan.FromMinutes(_idleMin));
             }
-            //try
-            //{
-            //    CleanDeviceSockets();
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e);
-            //}
-            //finally
-            //{
-            //    if (_running)
-            //        _cleanConnTimer.Start();
-            //}
+         
         }
 
         private void ErrorMsg(string errorTxt)
@@ -335,10 +258,6 @@ namespace TYSocketServer
 
         public void Dispose()
         {
-            //if (_cleanConnTimer != null && _cleanConnTimer.Enabled)
-            //{
-            //    _cleanConnTimer.Stop();
-            //}
             _running = false;
         }
     }
