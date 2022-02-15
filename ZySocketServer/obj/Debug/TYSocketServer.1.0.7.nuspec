@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>TYSocketServer</id>
+    <version>1.0.7</version>
+    <authors>Zhongyu Shi</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Socket Server端实现，集成连接点自动清理功能</description>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5.2">
+        <dependency id="System.ValueTuple" version="4.5.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETCoreApp3.1">
+        <dependency id="System.ValueTuple" version="4.5.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\bin\Debug\net452\TYSocketServer.dll" target="lib\net452\TYSocketServer.dll" />
+    <file src="D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\bin\Debug\netcoreapp3.1\TYSocketServer.dll" target="lib\netcoreapp3.1\TYSocketServer.dll" />
+  </files>
+</package>

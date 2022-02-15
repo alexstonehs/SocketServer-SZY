@@ -1,0 +1,9 @@
+D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\bin\x64\Debug\netcoreapp3.1\TYSocketServer.deps.json
+D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\bin\x64\Debug\netcoreapp3.1\TYSocketServer.dll
+D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\bin\x64\Debug\netcoreapp3.1\TYSocketServer.pdb
+D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\obj\x64\Debug\netcoreapp3.1\TYSocketServer.AssemblyInfoInputs.cache
+D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\obj\x64\Debug\netcoreapp3.1\TYSocketServer.AssemblyInfo.cs
+D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\obj\x64\Debug\netcoreapp3.1\TYSocketServer.csproj.CoreCompileInputs.cache
+D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\obj\x64\Debug\netcoreapp3.1\TYSocketServer.dll
+D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\obj\x64\Debug\netcoreapp3.1\TYSocketServer.pdb
+D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\obj\x64\Debug\netcoreapp3.1\TYSocketServer.csprojAssemblyReference.cache

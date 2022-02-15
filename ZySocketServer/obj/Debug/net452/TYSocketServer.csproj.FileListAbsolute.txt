@@ -1,0 +1,10 @@
+D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\obj\Debug\net452\TYSocketServer.csproj.CoreCompileInputs.cache
+D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\obj\Debug\net452\TYSocketServer.AssemblyInfoInputs.cache
+D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\obj\Debug\net452\TYSocketServer.AssemblyInfo.cs
+D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\bin\Debug\net452\TYSocketServer.dll
+D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\bin\Debug\net452\TYSocketServer.pdb
+D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\obj\Debug\net452\TYSocketServer.dll
+D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\obj\Debug\net452\TYSocketServer.pdb
+D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\bin\Debug\net452\System.ValueTuple.dll
+D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\obj\Debug\net452\TYSocketServer.csproj.CopyComplete
+D:\软件-数据接收程序\branches\SocketServer\TcpServerConsole\TYSocketServer\obj\Debug\net452\TYSocketServer.csprojAssemblyReference.cache
