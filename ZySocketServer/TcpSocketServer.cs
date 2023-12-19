@@ -358,7 +358,8 @@ namespace TYSocketServer
                 {
                     var sInfo = handler.RemoteEndPoint.ToString();
                     _clientManage.UpdateDeviceSockets(sInfo, handler);
-                    var data = state.Buffer.ToArray();
+                    //var data = state.Buffer.ToArray();
+                    var data = state.Buffer.Take(bytesRead).ToArray();
                     _triggerQueue?.Enqueue(new TriggerData{ClientId = sInfo, Data = data});
                     state = new StateObject(handler, _clientBufferSize);
 

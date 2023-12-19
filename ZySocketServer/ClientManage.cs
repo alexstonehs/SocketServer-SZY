@@ -233,7 +233,7 @@ namespace TYSocketServer
             {
                 try
                 {
-                    CleanDeviceSockets();
+                    //CleanDeviceSockets();
                 }
                 catch (Exception e)
                 {
